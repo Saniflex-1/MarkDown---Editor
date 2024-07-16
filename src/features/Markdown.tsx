@@ -17,7 +17,20 @@ const EditorSection = styled.div<{ $ismobile?: boolean; $isDark?: boolean }>`
   }
 `;
 
-
+const Editor = styled.textarea<{ $isDark?: boolean }>`
+  color: ${({ $isDark }) =>
+    $isDark ? "var(--color-grey-200)" : "var(--color-dark-0)"};
+  width: 100%;
+  height: calc(100% - 3rem);
+  border: transparent;
+  background-color: transparent;
+  outline: none;
+  resize: none;
+  padding: 10px 20px;
+  font-size: var(--font-size-medium);
+  font-family: var(--roboto-mono);
+  line-height: var(--line-height);
+`;
 
 interface MarkdownProps {
   input: string;
