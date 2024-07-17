@@ -90,6 +90,86 @@ const App = () => {
     toast.success("Document deleted successfully");
   };
 
-  
+  const handleCreate = () => {
+    const newDocument: Document = {
+      createdAt: formatDate(),
+      name: "untitled-document.md",
+      content: "",
+      id: generateUniqueId(),
+    };
+    setDocuments([...documents, newDocument]);
+    saveToLocalStorage([...documents, newDocument]);
+    setCurrentDocument(newDocument);
+  };
+
+  const handleSelectDocument = (doc: Document) => {
+    setCurrentDocument(doc);
+    setSidebarVisible(false);
+  };
+
+  const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (currentDocument) {
+      const updatedDocument = {
+        ...currentDocument,
+        name: event.target.value,
+        content: input,
+      };
+      const updatedDocuments = documents.map((doc) =>
+        doc.id === currentDocument.id ? updatedDocument : doc
+      );
+      setDocuments(updatedDocuments);
+      setCurrentDocument(updatedDocument);
+      saveToLocalStorage(updatedDocuments);
+    }
+  };
+
+  return (
+    <DarkModeProvider>
+      <GlobalStyles />
+      <Toaster position="top-center" reverseOrder={false} />
+      <AppContainer>
+        {showDeleteModal && (
+          <DeleteModal
+            handleDelete={handleDelete}
+            currentDocumentName={currentDocument?.name}
+            handleShowModal={handleShowModal}
+          />
+        )}
+        <Navbar
+          currentDocument={currentDocument}
+          handleShowModal={handleShowModal}
+          handleSave={handleSave}
+          setSidebarVisible={setSidebarVisible}
+          sidebarVisible={sidebarVisible}
+          handleNameChange={handleNameChange}
+        />
+        <Sidebar
+          documents={documents}
+          sidebarVisible={sidebarVisible}
+          handleCreate={handleCreate}
+          handleSelectDocument={handleSelectDocument}
+        />
+
+        <MainContent shifted={sidebarVisible}>
+          {currentDocument && (
+            <>
+              <Markdown
+                input={input}
+                setInput={setInput}
+                fullPreview={fullPreview}
+                setFullPreview={setFullPreview}
+              />
+              <Preview
+                input={input}
+                setFullPreview={setFullPreview}
+                fullPreview={fullPreview}
+              />
+            </>
+          )}
+        </MainContent>
+      </AppContainer>
+    </DarkModeProvider>
+  );
+};
 
 export default App;
