@@ -1,6 +1,6 @@
-# React + TypeScript + Vite
+# Welcome to Markdown
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Markdown is a lightweight markup language that you can use to add formatting elements to plaintext text documents.
 
 Currently, two official plugins are available:
 
