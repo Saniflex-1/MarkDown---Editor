@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
 const BlockParagraph = styled.p<{ type?: string; $isDark?: boolean }>`
-  eight: ${({ type }) => (type === "bordered" ? 700 : 300)};
+  padding: var(--line-height);
+  min-height: fit-content;
+  border-radius: 5px;
+  word-wrap: break-word;
+
+  
 `;
 export default BlockParagraph;
