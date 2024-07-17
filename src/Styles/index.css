@@ -60,3 +60,28 @@ h6 {
   text-transform: capitalize;
   color: var(--color-darkH-300);
 }
+
+h1 {
+  font-size: 32px;
+}
+h2 {
+  font-size: 28px;
+  font-weight: 300;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 20px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 14px;
+  color: var(--color-orange-0);
+}
+p {
+  word-wrap: break-word;
+  white-space: normal;
+}
