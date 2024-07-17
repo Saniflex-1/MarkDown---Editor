@@ -31,7 +31,65 @@ export const parseMarkdown = (
     }
   };
 
-  
+  lines.forEach((line, index) => {
+    const trimmedLine = line.trim();
+
+    if (trimmedLine === "") {
+      pushParagraph();
+      elements.push(<br key={index} />);
+    } else if (/^######/.test(trimmedLine)) {
+      pushParagraph();
+      elements.push(<h6 key={index}>{trimmedLine.slice(6)}</h6>);
+    } else if (/^#####/.test(trimmedLine)) {
+      pushParagraph();
+      elements.push(<h5 key={index}>{trimmedLine.slice(5)}</h5>);
+    } else if (/^####/.test(trimmedLine)) {
+      pushParagraph();
+      elements.push(<h4 key={index}>{trimmedLine.slice(4)}</h4>);
+    } else if (/^###/.test(trimmedLine)) {
+      pushParagraph();
+      elements.push(<h3 key={index}>{trimmedLine.slice(3)}</h3>);
+    } else if (/^##/.test(trimmedLine)) {
+      pushParagraph();
+      elements.push(<h2 key={index}>{trimmedLine.slice(2)}</h2>);
+    } else if (/^#/.test(trimmedLine)) {
+      pushParagraph();
+      elements.push(<h1 key={index}>{trimmedLine.slice(1)}</h1>);
+    } else if (/^\d+\./.test(trimmedLine)) {
+      pushParagraph();
+      elements.push(
+        <Paragraph $isDark={isDark} type="numberPoint" key={index}>
+          <span>{trimmedLine.match(/^\d+\./)?.[0]}</span>
+          {trimmedLine.slice(trimmedLine.indexOf(".") + 1)}
+        </Paragraph>
+      );
+    } else if (/^-/.test(trimmedLine) && !/^---/.test(trimmedLine)) {
+      pushParagraph();
+      elements.push(
+        <Paragraph $isDark={isDark} type="point" key={index}>
+          {trimmedLine.slice(1)}
+        </Paragraph>
+      );
+    } else if (/^>/.test(trimmedLine)) {
+      pushParagraph();
+      elements.push(
+        <BlockParagraph $isDark={isDark} type="bordered" key={index}>
+          {trimmedLine.slice(1)}
+        </BlockParagraph>
+      );
+    } else if (/^---$/.test(trimmedLine)) {
+      if (inSeaBlueDiv) {
+        pushParagraph();
+      } else {
+        inSeaBlueDiv = true;
+      }
+    } else {
+      if (currentParagraph) {
+        currentParagraph += ` ${trimmedLine}`;
+      } else {
+        currentParagraph = trimmedLine;
+      }
+    }
   });
 
   pushParagraph();
