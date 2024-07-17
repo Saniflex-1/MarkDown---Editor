@@ -77,3 +77,43 @@ interface DocumentInputProps {
   isList?: boolean;
 }
 
+function DocumentInput({
+  notInput = false,
+  date = false,
+  currentDocument,
+  handleNameChange = () => {},
+  documentName = "",
+  onClick = () => {},
+  isList = false,
+}: DocumentInputProps) {
+  const { isMobile } = useGetScreen();
+  return (
+    <StyledContainer islist={isList} onClick={onClick}>
+      {notInput ? (
+        <>
+          <Icon type="small" src="/assets/icon-document.svg" />
+          <StyledInputContainer>
+            <StyledSpan>{date}</StyledSpan>
+            <StyledName className="documentName">{documentName}</StyledName>
+          </StyledInputContainer>
+        </>
+      ) : (
+        <>
+          <Icon type="small" src="/assets/icon-document.svg" />
+          <StyledInputContainer>
+            {!isMobile && <StyledSpan>{currentDocument?.name}</StyledSpan>}
+            <StyledInput
+              $ismobile={isMobile}
+              placeholder={currentDocument?.name}
+              value={currentDocument?.name}
+              onChange={handleNameChange}
+              type="text"
+            />
+          </StyledInputContainer>
+        </>
+      )}
+    </StyledContainer>
+  );
+}
+
+export default DocumentInput;
