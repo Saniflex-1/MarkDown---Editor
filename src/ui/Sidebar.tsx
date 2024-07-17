@@ -26,3 +26,61 @@ const StyledSidebar = styled.div.withConfig({
   z-index: 1000;
 `;
 
+const LightDarkWrapper = styled.div`
+  width: 100%;
+  position: absolute;
+  bottom: 2rem;
+`;
+
+const SideBarHeading = styled.p`
+  font-size: var(--font-size-medium);
+  color: var(--color-grey-100);
+  letter-spacing: var(--char-spacing);
+  text-transform: uppercase;
+  font-weight: var(--text-bold);
+  margin-top: 0.5rem;
+`;
+
+interface Document {
+  createdAt: string;
+  name: string;
+  content: string;
+  id: string;
+}
+
+interface SideBarProps {
+  documents: Document[];
+  sidebarVisible: boolean;
+  handleCreate: () => void;
+  handleSelectDocument: (parameter: Document) => void;
+}
+
+export default function Sidebar({
+  documents,
+  sidebarVisible,
+  handleCreate,
+  handleSelectDocument,
+}: SideBarProps) {
+  return (
+    <StyledSidebar visible={sidebarVisible}>
+      <SideBarHeading>my documents</SideBarHeading>
+      <Button large={true} onClick={handleCreate}>
+        + New Document
+      </Button>
+      {documents.map((doc, index) => (
+        <DocumentInput
+          isList={true}
+          notInput={true}
+          key={index}
+          documentName={doc.name}
+          date={doc.createdAt}
+          onClick={() => handleSelectDocument(doc)}
+        />
+      ))}
+
+      <LightDarkWrapper>
+        <LightDark />
+      </LightDarkWrapper>
+    </StyledSidebar>
+  );
+}
