@@ -11,7 +11,12 @@ interface IconProps {
 // `;
 
 const Icon = styled.img<IconProps>`
-  
+  width: ${({ type }) => (type === "small" ? "15px" : "20px")};
+  height: ${({ type }) => (type === "small" ? "15px" : "20px")};
+
+  /* transition: fill color 300ms; */
+
+  cursor: pointer;
 `;
 
 export default Icon;
