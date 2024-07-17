@@ -85,3 +85,28 @@ p {
   word-wrap: break-word;
   white-space: normal;
 }
+.heading-medium {
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+}
+.heading-small {
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 2px;
+}
+.roboto-light {
+  font-size: 13px;
+}
+.preview-p,
+.preview-p-bold,
+.markdown {
+  font-family: "Roboto Slap", serif;
+  line-height: 24px;
+  font-size: 14px;
+}
+.preview-p-bold {
+  font-weight: 700;
+}
+.markdown {
+  font-family: "Roboto Mono", monospace;
+}
