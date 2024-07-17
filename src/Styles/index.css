@@ -85,7 +85,7 @@ p {
   word-wrap: break-word;
   white-space: normal;
 }
-.heading-medium {
+/* .heading-medium {
   font-size: 15px;
   font-family: "Roboto", sans-serif;
 }
@@ -109,4 +109,4 @@ p {
 }
 .markdown {
   font-family: "Roboto Mono", monospace;
-}
+} */
