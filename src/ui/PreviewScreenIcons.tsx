@@ -11,4 +11,29 @@ const IconStyle = css`
   }
 `;
 
+const ShowPreviewIcon = styled(FiEye)`
+  ${IconStyle}
+`;
+const ClosePreviewIcon = styled(FiEyeOff)`
+  ${IconStyle}
+`;
 
+interface PreviewScreenIcon {
+  state: boolean;
+  setState: (parameter: boolean) => void;
+}
+
+export default function PreviewScreenIcons({
+  state,
+  setState,
+}: PreviewScreenIcon) {
+  return (
+    <>
+      {state ? (
+        <ClosePreviewIcon onClick={() => setState(!state)} />
+      ) : (
+        <ShowPreviewIcon onClick={() => setState(!state)} />
+      )}
+    </>
+  );
+}
