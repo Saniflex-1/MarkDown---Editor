@@ -62,3 +62,18 @@ const StyledInput = styled.input<{ $ismobile?: boolean }>`
   }
 `;
 
+const StyledSpan = styled.span`
+  font-size: var(--font-size-light);
+  color: var(--color-grey-100);
+`;
+
+interface DocumentInputProps {
+  notInput?: boolean;
+  date?: boolean | string;
+  currentDocument?: { name: string; createdAt: string; content: string } | null;
+  handleNameChange?: (parameter: ChangeEvent<HTMLInputElement>) => void;
+  documentName?: string;
+  onClick?: () => void;
+  isList?: boolean;
+}
+
