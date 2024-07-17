@@ -13,6 +13,15 @@ const BlockParagraph = styled.p<{ type?: string; $isDark?: boolean }>`
   border-left: ${({ type }) =>
     type === "bordered" ? "solid var(--color-orange-0) 4px" : ""};
   /*///*/
-  
+  color: ${({ type, $isDark }) =>
+    type === "bordered"
+      ? $isDark
+        ? "var(--color-white-0)"
+        : "var(--color-dark-0)"
+      : $isDark
+      ? "var(--color-grey-200)"
+      : "var(--color-grey-100)"};
+
+  font-weight: ${({ type }) => (type === "bordered" ? 700 : 300)};
 `;
 export default BlockParagraph;
