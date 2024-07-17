@@ -13,3 +13,5 @@ const largeButton = css`
 `;
 
 
+
+export default Button;
